@@ -1,4 +1,10 @@
 {
+  "manifest_version": 3,
+  "name": "Proxy Chainer",
+  "description": "Sends a jwt token with username on proxy connect",
+  "options_ui": {
+    "page": "src/pages/options/index.html"
+  },
   "action": {
     "default_icon": "public/dev-icon-32.png",
     "default_popup": "src/pages/popup/index.html"
@@ -6,6 +12,10 @@
   "icons": {
     "128": "public/dev-icon-128.png"
   },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
   "web_accessible_resources": [
     {
       "resources": [
@@ -14,6 +24,19 @@
         "dev-icon-32.png"
       ],
       "matches": []
+    }
+  ],
+  "devtools_page": "src/pages/devtools/index.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "<all_urls>"
+      ],
+      "js": [
+        "src/pages/content/index.tsx"
+      ]
     }
   ]
 }
